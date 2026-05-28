@@ -5,38 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizzalab</title>
     <link rel="stylesheet" href="assets/css/global.css">
+
+    <script type="module" src="./src/components/Header.js"></script>
+    <script type="module" src="./src/components/ContainerMenu.js"></script>
+    <script type="module" src="./src/components/CartPanel.js"></script>
 </head>
 <body>
 
-<header>
-    <h1>Pizzalab</h1>
-</header>
+<header id="header-container"></header>
 
 <div class="main-container">
     <div class="menu-container" id="menu-container"></div>
 
-    <aside class="cart-panel">
+    <aside class="cart-panel" id="cart-panel">
         <div class="cart-header">
             <h2>Meu Pedido</h2>
         </div>
         
-        <div class="cart-items">
-            <div class="cart-item">
-                <div>
-                    <strong>1x Margherita</strong><br>
-                    <small>Média</small>
-                </div>
-                <span>R$ 45,00</span>
-            </div>
-            
-            <div class="cart-item">
-                <div>
-                    <strong>1x Pepperoni</strong><br>
-                    <small>Grande</small>
-                </div>
-                <span>R$ 52,00</span>
-            </div>
-        </div>
+        <div class="cart-items" id="cart-items"></div>
 
         <div class="cart-footer">
             <div class="total-row">
@@ -47,7 +33,5 @@
         </div>
     </aside>
 </div>
-
-<script type="module" src="./src/components/ContainerMenu.js"></script>
 </body>
 </html>
