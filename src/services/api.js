@@ -56,3 +56,20 @@ export async function fetchLogin(email, senha) {
     }
     return data;
 }
+
+//adicionar produto ao pedido com authetication
+export async function fetchAddProdutoAoPedido(produto_id, token) {
+    const response = await fetch(`${BASE_URL}/pedidos/produtos`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ produto_id })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
