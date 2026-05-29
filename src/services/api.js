@@ -37,8 +37,22 @@ export async function fetchSignup(nome, email, senha) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, email, senha })
     });
+    const data = await response.json();
     if (!response.ok) {
-        throw new Error(`Erro na requisição: ${response.status}`);
+        throw new Error(data.error);
     }
-    return await response.json();
+    return data;
+}
+
+export async function fetchLogin(email, senha) {
+    const response = await fetch(`${BASE_URL}/usuarios/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
 }

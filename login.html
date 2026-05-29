@@ -38,7 +38,7 @@
                     <a href="#" class="forgot-password">Esqueci minha senha</a>
 
                     <div>
-                        <button type="submit" class="btn-submit">Entrar</button>
+                        <button type="submit" class="btn-submit" id="btn-login">Entrar</button>
                     </div>
 
                     <div class="signup-text">
@@ -48,6 +48,22 @@
             </div>
         </section>
     </main>
-
+    <script type="module">
+        import { fetchLogin } from "./src/services/api.js";
+        document.getElementById('btn-login').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('password').value;
+            
+            try {
+                await fetchLogin(email, senha);
+                alert('login realizado com sucesso!');
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error(error);
+                alert(error.message);
+            }
+        });
+    </script>
 </body>
 </html>

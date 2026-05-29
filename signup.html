@@ -77,8 +77,8 @@
                 alert('Cadastro realizado com sucesso!');
                 window.location.href = 'login.html';
             } catch (error) {
-                console.error('Erro ao cadastrar:', error);
-                alert('Erro ao cadastrar. Tente novamente.');
+                console.error(error);
+                alert(error.message);
             }
         });
     </script>
