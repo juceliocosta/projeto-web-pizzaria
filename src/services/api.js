@@ -30,3 +30,15 @@ export async function fetchPedidos() {
     }
     return await response.json();
 }
+
+export async function fetchSignup(nome, email, senha) {
+    const response = await fetch(`${BASE_URL}/usuarios`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, senha })
+    });
+    if (!response.ok) {
+        throw new Error(`Erro na requisição: ${response.status}`);
+    }
+    return await response.json();
+}

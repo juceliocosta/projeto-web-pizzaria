@@ -1,3 +1,13 @@
+@media (max-width: var(--mobile)) {
+    header {
+        justify-content: space-between;
+    }
+    .logo-container {
+        position: static;
+        transform: none;
+    }
+}
+
 header {
     background-color: var(--primary);
     color: white;

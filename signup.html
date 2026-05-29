@@ -35,23 +35,20 @@
                         <input type="email" id="email" required>
                     </div>
 
-                    <div class="input-group">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone">
+                    <div class="input-container">
+                      <div class="input-group">
+                          <label for="password">Senha</label>
+                          <input type="password" id="password" required>
+                      </div>
+  
+                      <div class="input-group">
+                          <label for="confirm-password">Confirmar Senha</label>
+                          <input type="password" id="confirm-password" required>
+                      </div>                    
                     </div>
-
-                    <div class="input-group">
-                        <label for="password">Senha</label>
-                        <input type="password" id="password" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="password">Confirmar Senha</label>
-                        <input type="password" id="password" required>
-                    </div>                    
 
                     <div>
-                        <button type="submit" class="btn-submit">Cadastrar</button>
+                        <button type="submit" class="btn-submit" id="btn-signup">Cadastrar</button>
                     </div>
 
                     <div class="signup-text">
@@ -61,6 +58,30 @@
             </div>
         </section>
     </main>
+    <script type="module">
+        import { fetchSignup } from "./src/services/api.js";
+        document.getElementById('btn-signup').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('password').value;
+            const confirmSenha = document.getElementById('confirm-password').value;
+
+            if (senha !== confirmSenha) {
+                alert('As senhas não coincidem.');
+                return;
+            }
+
+            try {
+                await fetchSignup(nome, email, senha);
+                alert('Cadastro realizado com sucesso!');
+                window.location.href = 'login.html';
+            } catch (error) {
+                console.error('Erro ao cadastrar:', error);
+                alert('Erro ao cadastrar. Tente novamente.');
+            }
+        });
+    </script>
 
 </body>
 </html>
