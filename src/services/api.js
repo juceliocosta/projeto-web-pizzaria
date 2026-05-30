@@ -31,6 +31,19 @@ export async function fetchPedidos() {
     return await response.json();
 }
 
+export async function fetchPedidosDoUsuario(token) {
+    const response = await fetch(`${BASE_URL}/pedidos`, {
+        headers: { 
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
+
 export async function fetchSignup(nome, email, senha) {
     const response = await fetch(`${BASE_URL}/usuarios`, {
         method: 'POST',
@@ -91,7 +104,7 @@ export async function fetchRemoveProdutoDoPedido(produto_id, token) {
 
 // listar produtos do pedido com authetication
 export async function fetchProdutosDoPedido(token) {
-    const response = await fetch(`${BASE_URL}/pedidos/produtos`, {
+    const response = await fetch(`${BASE_URL}/pedidos`, {
         headers: { 
             'Authorization': `Bearer ${token}`
         }
