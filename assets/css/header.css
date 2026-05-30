@@ -53,6 +53,7 @@ nav a {
 }
 
 .user-icon {
+    color: white;
     width: 35px;
     height: 35px;
     border: 2px solid white;
@@ -60,4 +61,13 @@ nav a {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.user-icon:hover {
+  background-color: var(--primary-hover);
+}
+
+.user-icon:active {
+  background-color: var(--primary);
+  transform: scale(0.95);
 }
