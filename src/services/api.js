@@ -74,15 +74,28 @@ export async function fetchAddProdutoAoPedido(produto_id, token) {
     return data;
 }
 
+export async function fetchRemoveProdutoDoPedido(produto_id, token) {
+    console.log(`Removendo produto ${produto_id} do pedido com token ${token}`);
+    const response = await fetch(`${BASE_URL}/pedidos/produtos/${produto_id}`, {
+        method: 'DELETE',
+        headers: { 
+            'Authorization': `Bearer ${token}`
+        },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
+
 // listar produtos do pedido com authetication
 export async function fetchProdutosDoPedido(token) {
-    console.log('ANTES DO FETCH');
     const response = await fetch(`${BASE_URL}/pedidos/produtos`, {
         headers: { 
             'Authorization': `Bearer ${token}`
         }
     });
-    console.log('DEPOIS DO FETCH');
     const data = await response.json();
     if (!response.ok) {
         throw new Error(data.error);

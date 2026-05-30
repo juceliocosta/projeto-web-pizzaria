@@ -6,9 +6,11 @@
 
 :root {
   --primary: #b32429;
+  --secondary: #f7bc31;
   --dark: #1d3557;
   --light: #f1faee;
   --gray: #f8f9fa;
+  --muted: rgba(112, 112, 112, 0.4);
   --mobile: 768px;
   --tablet: 1024px;
   --desktop: 1200px;

@@ -1,5 +1,8 @@
 import { CartItem } from "./CartItem.js";
-import { fetchProdutosDoPedido } from "../services/api.js"; 
+import { 
+    fetchProdutosDoPedido, 
+    fetchRemoveProdutoDoPedido 
+} from "../services/api.js"; 
 
 export async function atualizarPedido() {
     const produtosList = document.getElementById('cart-items');  
@@ -11,6 +14,24 @@ export async function atualizarPedido() {
 
     } catch (error) {
         console.error('Não foi possível carregar o carrinho:', error);
-        produtosList.innerHTML = `<p class="erro-aviso">Erro ao carregar o carrinho. Verifique a conexão.</p>`;
+        produtosList.innerHTML = `<p class="info-aviso">Login<br> necessário</p>`;
     }    
 }
+
+document.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('remove-btn')) {
+        const pizza_id = e.target.getAttribute('data-itemId');
+        const token = localStorage.getItem('token');
+                
+        e.preventDefault();
+        
+        try {
+            const data = await fetchRemoveProdutoDoPedido(pizza_id, token);
+            await atualizarPedido();
+            console.log(data.message);
+        } catch (error) {
+            return;
+        }
+        await atualizarPedido();
+    }
+});

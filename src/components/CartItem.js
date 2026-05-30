@@ -11,7 +11,10 @@ export function CartItem(pizza) {
         <strong>${pizza.PedidoProduto.quantidade}x ${pizza.nome}</strong><br>
         <small>${pizza.nome_variacao}</small>
       </div>
-      <span>${precoFormatado}</span>
+      <div style="text-align: right;">
+        <span>${precoFormatado}</span><br>
+        <button class="remove-btn" data-itemId="${pizza.id}">Remover</button>
+      </div>
     </div>
   `;
 }
