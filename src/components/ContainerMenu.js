@@ -1,12 +1,14 @@
 import { CardPizza } from './CardPizza.js';
 import { fetchProdutos } from '../services/api.js';
 import { fetchAddProdutoAoPedido } from '../services/api.js';
+import { atualizarPedido } from './CartPanel.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const produtosList = document.getElementById('menu-container');
     
     try {
         const pizzas = await fetchProdutos();
+        await atualizarPedido();
         produtosList.innerHTML = pizzas.map(pizza => CardPizza(pizza)).join('');
       
     } catch (error) {
@@ -24,9 +26,9 @@ document.addEventListener('click', async (e) => {
         
         try {
             const data = await fetchAddProdutoAoPedido(pizza_id, token);
+            await atualizarPedido();
             console.log(data.message);
         } catch (error) {
-            alert(data.error);
             window.location.href = 'login.html';
         }
     }

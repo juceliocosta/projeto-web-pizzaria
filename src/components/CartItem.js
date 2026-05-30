@@ -8,7 +8,7 @@ export function CartItem(pizza) {
   return `
     <div class="cart-item">
       <div>
-        <strong>1x ${pizza.nome}</strong><br>
+        <strong>${pizza.PedidoProduto.quantidade}x ${pizza.nome}</strong><br>
         <small>${pizza.nome_variacao}</small>
       </div>
       <span>${precoFormatado}</span>

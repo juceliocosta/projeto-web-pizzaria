@@ -73,3 +73,19 @@ export async function fetchAddProdutoAoPedido(produto_id, token) {
     }
     return data;
 }
+
+// listar produtos do pedido com authetication
+export async function fetchProdutosDoPedido(token) {
+    console.log('ANTES DO FETCH');
+    const response = await fetch(`${BASE_URL}/pedidos/produtos`, {
+        headers: { 
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    console.log('DEPOIS DO FETCH');
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
