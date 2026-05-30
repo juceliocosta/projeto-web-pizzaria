@@ -49,13 +49,23 @@
 .checkout-btn {
   width: 100%;
   background-color: var(--primary);
+  box-shadow: 0 4px 4px var(--box-shadow);
   color: white;
   border: none;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 20px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.checkout-btn:active {
+  background-color: var(--primary);
+  transform: scale(0.95);
 }
 
 .remove-btn {

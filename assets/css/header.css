@@ -33,14 +33,15 @@ nav a {
 }
 
 .logo-main {
-    font-family: 'Georgia', cursive, serif;
+    font-family: "Kaushan Script";
     font-size: 28px;
     font-style: italic;
     font-weight: bold;
-    color: #f7bc31;
+    color: var(--secondary);
 }
 
 .logo-main span {
+    font-family: "Kaushan Script";
     color: white;
     font-style: normal;
 }

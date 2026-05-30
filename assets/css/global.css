@@ -6,11 +6,14 @@
 
 :root {
   --primary: #b32429;
+  --primary-hover: #680000;
   --secondary: #f7bc31;
   --dark: #1d3557;
   --light: #f1faee;
   --gray: #f8f9fa;
   --muted: rgba(112, 112, 112, 0.4);
+  --text-shadow: #00000066;
+  --box-shadow: #00000020;
   --mobile: 768px;
   --tablet: 1024px;
   --desktop: 1200px;
