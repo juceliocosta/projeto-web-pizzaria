@@ -1,19 +1,18 @@
-const FRONT_URL = 'http://127.0.0.1:5500';
+import { FRONT_URL } from "../config.js";
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const produtosList = document.getElementById('header-container');
-    produtosList.innerHTML = `
-      <nav>
-          <a href="${FRONT_URL}/index.html">Home</a>
-          <a href="#">Horários</a>
-          <a href="#">Sobre</a>
-      </nav>
-      <div class="logo-container">
-          <div class="logo-main">Pizza<span>lab</span></div>
-          <span class="logo-sub">Pizzaria - Delivery</span>
-      </div>
-      <div>
-        <a href="${FRONT_URL}/login.html" class="user-icon"><i class="fa-solid fa-user"></i></a>
-      </div>
-    `;   
-});
+export function Header() {
+  return `
+    <nav>
+        <a href="${FRONT_URL}/index.html">Home</a>
+        <a href="#">Horários</a>
+        <a href="#">Sobre</a>
+    </nav>
+    <div class="logo-container">
+        <div class="logo-main">Pizza<span>lab</span></div>
+        <span class="logo-sub">Pizzaria - Delivery</span>
+    </div>
+    <div>
+      <a href="${FRONT_URL}/login.html" class="user-icon"><i class="fa-solid fa-user"></i></a>
+    </div>
+  `;
+}
