@@ -1,10 +1,10 @@
 @media (max-width: var(--mobile)) {
-  .cart-panel {
+  .aside-panel {
   height: 400px;
   }
 }
 
-.cart-panel {
+.aside-panel {
   flex: 1;
   background: white;
   border-radius: 12px;
@@ -14,7 +14,7 @@
   min-width: 300px;
 }
 
-.cart-header {
+.aside-header {
   padding: 15px;
   text-align: center;
 }
@@ -33,7 +33,7 @@
   padding: 10px 0;
 }
 
-.cart-footer {
+.aside-footer {
   padding: 20px;
   border-top: 2px solid var(--gray);
 }

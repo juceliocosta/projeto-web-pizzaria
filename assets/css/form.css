@@ -1,33 +1,11 @@
-
-/* lado esquerdo */
-.hero-side {
-    flex: 1;
-    text-align: center;
-    padding: 20px;
-}
-
-.hero-side h1 {
-    color: var(--primary-hover);
-    font-family: "Kaushan Script";
-    font-size: 48px;
-    font-weight: normal;
-    text-shadow: -2px 2px 4px var(--text-shadow);
-}
-
-.hero-pizza-img {
-    max-width: 350px;
-    width: 100%;
-    filter: drop-shadow(0px 8px 8px var(--text-shadow));
-}
-
 /* lado direito (Login Card) */
-.login-side {
+.form-side {
     flex: 1;
     display: flex;
     justify-content: center;
 }
 
-.login-card {
+.form-card {
     background: white;
     padding: 40px;
     border-radius: 20px;
@@ -37,7 +15,7 @@
     text-align: center;
 }
 
-.login-header {
+.form-header {
     display: flex;
     align-items: center;
     justify-content: center;
