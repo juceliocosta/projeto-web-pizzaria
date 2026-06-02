@@ -1,9 +1,11 @@
 @import url('cardPizza.css');
 @import url('asidePanel.css');
-@import url('containerMenu.css');
+@import url('container.css');
 @import url('header.css');
 @import url('form.css');
 @import url('heroCard.css');
+@import url('container.css');
+@import url('table.css');
 
 :root {
   --primary: #b32429;

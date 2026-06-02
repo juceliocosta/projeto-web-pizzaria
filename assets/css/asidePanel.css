@@ -14,12 +14,12 @@
   min-width: 300px;
 }
 
-.aside-header {
+.header-container {
   padding: 15px;
   text-align: center;
 }
 
-.cart-items {
+.card-container {
   flex: 1;
   overflow-y: auto;
   padding: 15px;

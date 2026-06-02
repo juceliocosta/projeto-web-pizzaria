@@ -1,4 +1,3 @@
-/* lado direito (Login Card) */
 .form-side {
     flex: 1;
     display: flex;
@@ -7,12 +6,13 @@
 
 .form-card {
     background: white;
-    padding: 40px;
+    padding: 20px;
     border-radius: 20px;
     width: 100%;
     max-width: 550px;
     box-shadow: 0 8px 8px var(--box-shadow);
     text-align: center;
+    overflow-y: auto;    
 }
 
 .form-header {
@@ -26,10 +26,15 @@
     color: #000;
 }
 
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 .input-container {
     display: flex;
     gap: 20px;
-    margin-bottom: 30px;
 }
 
 .input-group {
@@ -45,7 +50,7 @@
     margin-bottom: 5px;
 }
 
-.input-group input {
+.input-group input, select, textarea {
     width: 100%;
     border: none;
     border-bottom: 2px solid #555;
@@ -64,11 +69,12 @@
     margin-bottom: 30px;
 }
 
-.btn-submit {
+.btn-submit, .btn-reset {
     background-color: var(--primary);
     color: white;
     border: none;
-    padding: 12px 60px;
+    padding: 12px;
+    flex: 1;
     font-size: 16px;
     font-weight: bold;
     border-radius: 20px;
@@ -78,11 +84,28 @@
     box-shadow: 0 4px 4px var(--box-shadow);
 }
 
+.btn-cta {
+    padding: 12px 60px;
+}
+
 .btn-submit:hover {
   background-color: var(--primary-hover);
 }
 
 .btn-submit:active {
+  background-color: var(--primary);
+  transform: scale(0.95);
+}
+
+.btn-reset {
+    background-color: var(--secondary);
+}
+
+.btn-reset:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-reset:active {
   background-color: var(--primary);
   transform: scale(0.95);
 }

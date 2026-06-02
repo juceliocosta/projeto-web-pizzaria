@@ -115,3 +115,54 @@ export async function fetchProdutosDoPedido(token) {
     }
     return data;
 }
+
+// ---------------- Administrador ----------------
+
+// Adicionar produto
+export async function fetchAddProduto(produto, token) {
+    const response = await fetch(`${BASE_URL}/produtos`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ produto })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
+
+// Editar produto
+export async function fetchEditProduto(produto_id, token, updatedData) {
+    const response = await fetch(`${BASE_URL}/produtos/${produto_id}`, {
+        method: 'PUT',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(updatedData)
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
+
+// Deletar produto
+export async function fetchDeleteProduto(produto_id, token) {
+    const response = await fetch(`${BASE_URL}/produtos/${produto_id}`, {
+        method: 'DELETE',
+        headers: { 
+            'Authorization': `Bearer ${token}`
+        },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
