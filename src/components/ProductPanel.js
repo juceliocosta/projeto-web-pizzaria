@@ -1,23 +1,32 @@
+import { fetchAddProduto, fetchEditProduto, fetchProdutoById } from '../services/api.js';
+
 export async function ProductPanel() {
   document.addEventListener('submit', async (e) => {
     if (e.target.id === 'product-form') {
       e.preventDefault();
       
+      const id = document.getElementById('prod-id').value; // ID oculto para edição
       const nome = document.getElementById('prod-nome').value.trim();
       const categoria = document.getElementById('prod-categoria').value;
-      const tamanho = document.getElementById('prod-tamanho').value;
+      const nome_variacao = document.getElementById('prod-tamanho').value;
       const preco = parseFloat(document.getElementById('prod-preco').value) * 100; // Convertendo para centavos
       const descricao = document.getElementById('prod-descricao').value.trim();
-
-      if (!nome || !categoria || !tamanho || isNaN(preco)) { // isNaN verifica se não é número
+      
+      if (!nome || !categoria || !nome_variacao || isNaN(preco)) { // isNaN verifica se não é número
         alert('Por favor, preencha todos os campos obrigatórios corretamente.');
         return;
       }
 
       try {
         const token = localStorage.getItem('token');
-        const data = await fetchAddProduto({ nome, categoria, tamanho, preco, descricao }, token);
-        console.log(data.message);
+        const produto = await fetchProdutoById(id);
+        console.log("produto:", produto);
+        if (produto.id == id) {
+          await fetchEditProduto(id, token, { nome, categoria, nome_variacao, descricao, preco });
+        } else {
+          await fetchAddProduto({ nome, categoria, nome_variacao, descricao, preco }, token)
+        }
+        
         // Limpar o formulário após o envio bem-sucedido
         e.target.reset();
       } catch (error) {
@@ -28,6 +37,7 @@ export async function ProductPanel() {
   });
 
   return `
+    <input type="hidden" id="prod-id">
     <div class="input-group">
       <label for="prod-nome">Nome do Produto</label>
       <input type="text" id="prod-nome" placeholder="Ex: Calabresa Especial" required>
@@ -62,7 +72,7 @@ export async function ProductPanel() {
 
     <div class="btn-container">
       <button type="reset" class="btn-reset">Limpar</button>
-      <button type="submit" class="btn-submit">Salvar</button>
+      <button type="submit" class="btn-submit" id="btn-add">Salvar</button>
     </div>
   `;
 }

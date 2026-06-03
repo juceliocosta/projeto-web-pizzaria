@@ -9,6 +9,15 @@ export async function fetchProdutos() {
     return await response.json();
 }
 
+export async function fetchProdutoById(produto_id) {
+    const response = await fetch(`${BASE_URL}/produtos/${produto_id}`);
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data;
+}
+
 // criar pedido
 export async function criarPedido(pedido) {
     const response = await fetch(`${BASE_URL}/pedidos`, {
@@ -126,7 +135,7 @@ export async function fetchAddProduto(produto, token) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ produto })
+        body: JSON.stringify(produto)
     });
     const data = await response.json();
     if (!response.ok) {
