@@ -97,7 +97,6 @@ export async function fetchAddProdutoAoPedido(produto_id, token) {
 }
 
 export async function fetchRemoveProdutoDoPedido(produto_id, token) {
-    console.log(`Removendo produto ${produto_id} do pedido com token ${token}`);
     const response = await fetch(`${BASE_URL}/pedidos/produtos/${produto_id}`, {
         method: 'DELETE',
         headers: { 

@@ -69,13 +69,13 @@
                 if (data.usuario.tipo_usuario == "Cliente"){
                     window.location.href = 'index.html';
                 }
-                if (data.usuario.tipo_usuario == "Admin"){
+                else if (data.usuario.tipo_usuario == "Admin"){
                     window.location.href = 'product-manager.html';
                 }
                 
             } catch (error) {
+                alert(error.message);
                 console.error(error);
-                alert(data.error);
             }
         });
     </script>
