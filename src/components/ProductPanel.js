@@ -1,11 +1,13 @@
 import { fetchAddProduto, fetchEditProduto, fetchProdutoById } from '../services/api.js';
+import { atualizarTabelaProdutos } from './TableProducts.js';
 
 export async function ProductPanel() {
   document.addEventListener('submit', async (e) => {
     if (e.target.id === 'product-form') {
       e.preventDefault();
       
-      const id = document.getElementById('prod-id').value; // ID oculto para edição
+      //const id = document.querySelector('[data-prodId]').getAttribute('data-prodId') || null; // ID oculto para edição, usando data-id
+      let id = document.getElementById('prod-id').value || null; // ID oculto para edição
       const nome = document.getElementById('prod-nome').value.trim();
       const categoria = document.getElementById('prod-categoria').value;
       const nome_variacao = document.getElementById('prod-tamanho').value;
@@ -20,12 +22,18 @@ export async function ProductPanel() {
       try {
         const token = localStorage.getItem('token');
         const produto = await fetchProdutoById(id);
-        console.log("produto:", produto);
-        if (produto.id == id) {
-          await fetchEditProduto(id, token, { nome, categoria, nome_variacao, descricao, preco });
+
+        if (produto == null || produto.id == null) {
+          console.log("Adicionando novo produto");
+          await fetchAddProduto({ nome, categoria, nome_variacao, descricao, preco }, token);
+          id = null; // Limpa o ID após adicionar um novo produto
         } else {
-          await fetchAddProduto({ nome, categoria, nome_variacao, descricao, preco }, token)
+          console.log("Editando produto existente com ID:", id);
+          await fetchEditProduto(produto.id, token, { nome, categoria, nome_variacao, descricao, preco });
+          id = null;
         }
+        
+        await atualizarTabelaProdutos();
         
         // Limpar o formulário após o envio bem-sucedido
         e.target.reset();

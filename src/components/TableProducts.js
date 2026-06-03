@@ -1,11 +1,17 @@
-import { fetchDeleteProduto, fetchEditProduto, fetchProdutos } from '../services/api.js';
+import { fetchDeleteProduto, fetchProdutos } from '../services/api.js';
 import { TableProductRecord } from './TableProductRecord.js';
+
+export async function atualizarTabelaProdutos() {
+  const products = document.getElementById('table-container');
+  if (products) products.innerHTML = await TableProducts('btn-edit','btn-delete', 'data-editId', 'data-deleteId');
+}
 
 export async function TableProducts(classEdit, classDelete, dataEditId, dataDeleteId) {
   
   let produtos =  await fetchProdutos();
   
   const preencherFormularioEdicao = (produto) => {
+    document.getElementById('prod-id').value = produto.id || null; // Atualiza o campo oculto de ID
     document.getElementById('prod-nome').value = produto.nome || '';
     document.getElementById('prod-categoria').value = produto.categoria || '';
     document.getElementById('prod-tamanho').value = produto.nome_variacao || '';
@@ -38,6 +44,8 @@ export async function TableProducts(classEdit, classDelete, dataEditId, dataDele
         const token = localStorage.getItem('token');
         const data = await fetchDeleteProduto(product_id, token);
         console.log(data.message);
+
+        await atualizarTabelaProdutos();
       } catch (error) {
         alert(data.error);
       }

@@ -6,7 +6,7 @@ export function TableProductRecord(product) {
   });
   
   return `
-    <tr data-prodId="${product.id}">
+    <tr id="${product.id}" data-prodId="${product.id}">
       <td>
         <div class="product-cell">
           <div class="product-info">
