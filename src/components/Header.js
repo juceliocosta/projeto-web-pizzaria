@@ -1,6 +1,6 @@
 import { FRONT_URL } from "../config.js";
 
-export function Header() {
+export function renderizarHeader() {
   return `
     <nav>
         <a href="${FRONT_URL}/index.html">Home</a>
