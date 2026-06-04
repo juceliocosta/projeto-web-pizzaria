@@ -1,7 +1,9 @@
 //renderizações
-import { Header } from "./components/Header.js";
+import { renderizarHeader } from "./components/Header.js";
 // import { HeaderAdmin } from "./components/HeaderAdmin.js";
-import { Menu } from "./components/Menu.js";
+import { renderizarMenu } from "./components/Menu.js";
+//import { renderizarItensCarrinho } from "./CartItem.js";
+import { renderizarCarrinho } from "./components/CartPanel.js"
 // import { TableProducts } from "./components/TableProducts.js";
 // import { ProductPanel } from "./components/ProductPanel.js";
 
@@ -12,8 +14,9 @@ import {removerDoCarrinho} from "./events/cartEvents.js"
 
 document.addEventListener('DOMContentLoaded', async () => {
   const containerIds = {
-    'header-container': Header(),
-    'menu-container': await Menu('add-btn', 'data-id')
+    'header-container': renderizarHeader(),
+    'menu-container': await renderizarMenu(),
+    'cart-container': await renderizarCarrinho()
   };
 
   Object.entries(containerIds).forEach(([id, content]) => {
