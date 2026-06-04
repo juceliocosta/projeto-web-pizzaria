@@ -11,7 +11,7 @@ function precoFormatado(preco) {
     });
 }
 
-export async function atualizarPedido() {
+export async function renderizarCarrinho() {
     const produtosList = document.getElementById('cart-items');
     const total = document.getElementById('total');  
     try {

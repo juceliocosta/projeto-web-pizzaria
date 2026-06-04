@@ -1,4 +1,4 @@
-import { fetchAddProduto, fetchEditProduto, fetchProdutoById } from '../services/api.js';
+import { fetchAddProduto, fetchEditProduto } from '../services/api.js';
 import { atualizarTabelaProdutos } from './TableProducts.js';
 
 export async function ProductPanel() {
@@ -19,7 +19,6 @@ export async function ProductPanel() {
 
     if (id){
       try{
-        console.log("editar o produto"+dados)
         await fetchEditProduto(id, token, dados);
 
       } catch(error){

@@ -17,7 +17,7 @@ export function TableProductRecord(product) {
       </td>
       <td>${product.nome_variacao}</td>
       <td>${product.descricao}</td>
-      <strong><td>R$ ${precoFormatado}</td></strong>
+      <strong><td>${precoFormatado}</td></strong>
       <td>
         <div class="actions" style="justify-content: center;">
           <button class="btn-action btn-edit" id="btn-edit" data-editId="${product.id}">Editar</button>
