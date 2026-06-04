@@ -1,8 +1,8 @@
-export const BASE_URL = 'http://localhost:3000';
+export const API_URL = 'https://projeto-api-pizzaria.onrender.com/';
 
 // listar produtos
 export async function fetchProdutos() {
-    const response = await fetch(`${BASE_URL}/produtos`);
+    const response = await fetch(`${API_URL}/produtos`);
     if (!response.ok) {
         throw new Error(`Erro na requisição: ${response.status}`);
     }
@@ -10,7 +10,7 @@ export async function fetchProdutos() {
 }
 
 export async function fetchProdutoById(produto_id) {
-    const response = await fetch(`${BASE_URL}/produtos/${produto_id}`);
+    const response = await fetch(`${API_URL}/produtos/${produto_id}`);
     const data = await response.json();
     if (!response.ok) {
         throw new Error(data.error);
@@ -20,7 +20,7 @@ export async function fetchProdutoById(produto_id) {
 
 // criar pedido
 export async function criarPedido(pedido) {
-    const response = await fetch(`${BASE_URL}/pedidos`, {
+    const response = await fetch(`${API_URL}/pedidos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pedido)
@@ -33,7 +33,7 @@ export async function criarPedido(pedido) {
 
 // listar pedidos
 export async function fetchPedidos() {
-    const response = await fetch(`${BASE_URL}/pedidos`);
+    const response = await fetch(`${API_URL}/pedidos`);
     if (!response.ok) {
         throw new Error(`Erro na requisição: ${response.status}`);
     }
@@ -41,7 +41,7 @@ export async function fetchPedidos() {
 }
 
 export async function fetchPedidosDoUsuario(token) {
-    const response = await fetch(`${BASE_URL}/pedidos`, {
+    const response = await fetch(`${API_URL}/pedidos`, {
         headers: { 
             'Authorization': `Bearer ${token}`
         }
@@ -54,7 +54,7 @@ export async function fetchPedidosDoUsuario(token) {
 }
 
 export async function fetchSignup(nome, email, senha) {
-    const response = await fetch(`${BASE_URL}/usuarios`, {
+    const response = await fetch(`${API_URL}/usuarios`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, email, senha })
@@ -67,7 +67,7 @@ export async function fetchSignup(nome, email, senha) {
 }
 
 export async function fetchLogin(email, senha) {
-    const response = await fetch(`${BASE_URL}/usuarios/login`, {
+    const response = await fetch(`${API_URL}/usuarios/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, senha })
@@ -81,7 +81,7 @@ export async function fetchLogin(email, senha) {
 
 //adicionar produto ao pedido com authetication
 export async function fetchAddProdutoAoPedido(produto_id, token) {
-    const response = await fetch(`${BASE_URL}/pedidos/produtos`, {
+    const response = await fetch(`${API_URL}/pedidos/produtos`, {
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export async function fetchAddProdutoAoPedido(produto_id, token) {
 }
 
 export async function fetchRemoveProdutoDoPedido(produto_id, token) {
-    const response = await fetch(`${BASE_URL}/pedidos/produtos/${produto_id}`, {
+    const response = await fetch(`${API_URL}/pedidos/produtos/${produto_id}`, {
         method: 'DELETE',
         headers: { 
             'Authorization': `Bearer ${token}`
@@ -112,7 +112,7 @@ export async function fetchRemoveProdutoDoPedido(produto_id, token) {
 
 // listar produtos do pedido com authetication
 export async function fetchProdutosDoPedido(token) {
-    const response = await fetch(`${BASE_URL}/pedidos`, {
+    const response = await fetch(`${API_URL}/pedidos`, {
         headers: { 
             'Authorization': `Bearer ${token}`
         }
@@ -128,7 +128,7 @@ export async function fetchProdutosDoPedido(token) {
 
 // Adicionar produto
 export async function fetchAddProduto(produto, token) {
-    const response = await fetch(`${BASE_URL}/produtos`, {
+    const response = await fetch(`${API_URL}/produtos`, {
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export async function fetchAddProduto(produto, token) {
 
 // Editar produto
 export async function fetchEditProduto(produto_id, token, updatedData) {
-    const response = await fetch(`${BASE_URL}/produtos/${produto_id}`, {
+    const response = await fetch(`${API_URL}/produtos/${produto_id}`, {
         method: 'PUT',
         headers: { 
             'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ export async function fetchEditProduto(produto_id, token, updatedData) {
 
 // Deletar produto
 export async function fetchDeleteProduto(produto_id, token) {
-    const response = await fetch(`${BASE_URL}/produtos/${produto_id}`, {
+    const response = await fetch(`${API_URL}/produtos/${produto_id}`, {
         method: 'DELETE',
         headers: { 
             'Authorization': `Bearer ${token}`
