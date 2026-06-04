@@ -2,48 +2,39 @@ import { fetchAddProduto, fetchEditProduto, fetchProdutoById } from '../services
 import { atualizarTabelaProdutos } from './TableProducts.js';
 
 export async function ProductPanel() {
-  document.addEventListener('submit', async (e) => {
-    if (e.target.id === 'product-form') {
-      e.preventDefault();
-      
-      //const id = document.querySelector('[data-prodId]').getAttribute('data-prodId') || null; // ID oculto para edição, usando data-id
-      let id = document.getElementById('prod-id').value || null; // ID oculto para edição
-      const nome = document.getElementById('prod-nome').value.trim();
-      const categoria = document.getElementById('prod-categoria').value;
-      const nome_variacao = document.getElementById('prod-tamanho').value;
-      const preco = parseFloat(document.getElementById('prod-preco').value) * 100; // Convertendo para centavos
-      const descricao = document.getElementById('prod-descricao').value.trim();
-      
-      if (!nome || !categoria || !nome_variacao || isNaN(preco)) { // isNaN verifica se não é número
-        alert('Por favor, preencha todos os campos obrigatórios corretamente.');
-        return;
-      }
+  const form = document.getElementById('product-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      try {
-        const token = localStorage.getItem('token');
-        const produto = await fetchProdutoById(id);
+    const token = localStorage.getItem('token');
 
-        if (produto == null || produto.id == null) {
-          console.log("Adicionando novo produto");
-          await fetchAddProduto({ nome, categoria, nome_variacao, descricao, preco }, token);
-          id = null; // Limpa o ID após adicionar um novo produto
-        } else {
-          console.log("Editando produto existente com ID:", id);
-          await fetchEditProduto(produto.id, token, { nome, categoria, nome_variacao, descricao, preco });
-          id = null;
-        }
-        
-        await atualizarTabelaProdutos();
-        
-        // Limpar o formulário após o envio bem-sucedido
-        e.target.reset();
-      } catch (error) {
-        console.error('Erro ao adicionar produto:', error);
-        alert('Não foi possível adicionar o produto. Verifique os dados e tente novamente.');
-      }
+    const id = document.getElementById('prod-id').value;
+    const dados = {
+      nome: document.getElementById('prod-nome').value.trim(),
+      categoria: document.getElementById('prod-categoria').value,
+      nome_variacao: document.getElementById('prod-tamanho').value,
+      preco: parseFloat(document.getElementById('prod-preco').value) * 100, //centavos
+      descricao: document.getElementById('prod-descricao').value.trim(),
     }
-  });
 
+    if (id){
+      try{
+        console.log("editar o produto"+dados)
+        await fetchEditProduto(id, token, dados);
+
+      } catch(error){
+        alert(error.message);
+      }
+
+    } else {
+      await fetchAddProduto(dados, token);
+    }
+
+    await atualizarTabelaProdutos();
+    e.target.reset();
+    document.getElementById('prod-id').value = "";
+  });
+  
   return `
     <input type="hidden" id="prod-id">
     <div class="input-group">
