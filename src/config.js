@@ -1,1 +1,1 @@
-export const FRONT_URL = 'http://127.0.0.1:5500';
+export const FRONT_URL = 'https://juceliocosta.github.io/projeto-web-pizzaria';
