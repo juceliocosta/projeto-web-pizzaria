@@ -1,4 +1,4 @@
-export const API_URL = 'https://projeto-api-pizzaria.onrender.com';
+import { API_URL } from "../config.js";
 
 // listar produtos
 export async function fetchProdutos() {
