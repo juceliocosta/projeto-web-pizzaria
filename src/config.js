@@ -1,2 +1,2 @@
-export const FRONT_URL = 'https://juceliocosta.github.io/projeto-web-pizzaria';
-export const API_URL = 'https://projeto-api-pizzaria.onrender.com';
+export const FRONT_URL = 'http://127.0.0.1:5500';
+export const API_URL = 'http://localhost:3000';
